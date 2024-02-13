@@ -32,7 +32,7 @@
   // logo 이미지 출력하기(쿠팡, 다음, 구디, 구글, 네이버)
   var logoList = ['coupang', 'daum', 'goodee', 'google', 'naver'];
   var imgTag = '<div>';
-  for( var i =0; i<logoList.length; i++) {
+  for( var i = 0; i < logoList.length; i++) {
     imgTag += '<img src="../../assets/image/logo_' +logoList[i]+ '.png" width="200px">&nbsp;';
   }
   imgTag += '</div>';
@@ -52,7 +52,6 @@
   // 2. unshift(요소) : 첫번째 요소로 추가하기
   items.unshift('C');  // c a b
   items.unshift('D');  // d c a b
-
   console.log(items);
 
   // 요소 삭제하기
@@ -60,7 +59,6 @@
   items.pop();  // d c a
   // 2. shift() : 첫번째 요소 삭제하기
   items.shift();  // c a
-
   console.log(items);
 
   // 요소 바꾸기 (요소 추가, 삭제, 바꾸기를 모두 수행할 수 있다.)
