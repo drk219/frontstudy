@@ -185,6 +185,17 @@
     var str = new String('JavaScript');
     console.log(str, typeof str);
     console.log(str.valueOf(), typeof str.valueOf());
+    /*
+    JavaScript에서는 모든 것이 객체로 취급됩니다. 
+    typeof 연산자는 변수의 데이터 유형을 반환하는 데 사용됩니다. 
+    그러나 객체의 경우 typeof 연산자는 'object'를 반환합니다. 
+    typeof 연산자는 원시 자료형(primitive data types)과 객체(object)를 구별합니다. 
+    원시 자료형은 숫자, 문자열, 불리언, null, undefined, Symbol입니다. 
+    하지만 객체는 이러한 원시 자료형과는 달리 복합적인 데이터 구조를 가질 수 있으므로, 
+    typeof 연산자로 객체를 확인할 때 'object'를 반환합니다.
+    따라서 new String('JavaScript')은 String 객체를 생성하므로 해당 변수의 타입은 'object'가 됩니다. 
+    이것은 내부적으로 JavaScript 엔진이 객체를 처리하는 방식입니다.
+    */
 
     // 문자열을 분리해서 배열 반환
     var str = 'a,b,c,d,e';
