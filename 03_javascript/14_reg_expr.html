@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>reg_expr</title>
+</head>
+<body>
+  
+  <script>
+    /*
+      < 정규식 (regular expression) >
+
+      1. 어떤 문자열이 특정 패턴을 가지고 있는지 확인하기 위한 표현식이다.
+      2. 자바스크립트 정규식 표현 방법
+        /정규식/
+      3. 자바스크립트 정규식 메소드
+        /정규식/.test(문자열) : 정규식 
+    */
+  </script>
+  <script>
+    /*
+      < 정규식 메타 문자 >
+      
+      1. 정규식에서 특별한 의미를 가진 문자를 의미한다. 
+      2. 주요 메타 문자
+        1) .
+          (1) 모든 단일문자 (임의의 문자 1개 뒤에 x 문자가 오는 것을 말합니다.)
+          (2) b.at : baat, bbat, bcat, bdat, ... / 불가 bat, baaat (글자가 없거나 더 많으면 안된다.)
+        2) *
+          (1) 0개 이상의 반복 문자 (x 문자가 0번 또는 그 이상 반복됨을 말합니다.)
+          (2) goo* : go, god, good, goood, ...
+        3) +
+          (1) 1개 이상의 반복 문자 (x 문자가 한번 이상 반복됨을 말합니다.)
+          (2) goo+ : goo, good, goood, ...
+        4) ^
+          (1) 시작이 일치하는 문자 (시작에서 일치)
+          (2) ^a : app, apple, asia, africa, ...
+        5) $
+          (1) 끝이 일치하는 문자 (끝에서 일치)
+          (2) end$ : end, weekend, the end, ... / 불가 ending 
+        6) ?
+          (1) 0개 이상의 문자 (x 문자가 안나오거나 1번 나옵니다. or 조건입니다.)
+          (2) colou?r : color, colour
+        7) ()
+          (1) 괄호 내의 문자를 문자 패턴으로 간주 (그룹) (()안의 내용을 캡쳐하며, 그룹화 한다 )
+          (2) (app)A? : appA, appappA, appappappA, ...
+        8) |
+          (1) 또는 (or)
+          (2) a(b|c) : ab, ac
+        9) \
+          (1) 이스케이프, 역슬래시 뒤에 오는 메타 문자를 일반 문자로 간주
+          (2) \*, \., \?, ...
+        10) {m}
+          (1) 정확히 m개 문자 (0 <= m <= 255)
+          (2) a{3} : aaa
+        11) {m,}
+          (1) m개 이상 문자 (0 <= m <= 255)
+          (2) a{3,} : aaa, aaaa, aaaaa, ...
+        12) {m,n}
+          (1) m개 이상 n개 이하 문자 (0 <= m <= 255)
+          (2) a{2, 4} : aa, aaa, aaaa
+    */
+  </script>
+
+  <div id="div1">
+    <input type="text">
+    <button type="button" onclick="myFunc1()">검사</button>
+  </div>
+  <script>
+    function myFunc1() {
+      var regExpr = /b.at/;   
+      //원하는 문자만 들어가게 설정하려면 앞뒤로 ^$ 추가해서 /^b.at$/ 처럼 사용해야 한다.
+      if(regExpr.test(document.querySelector('#div1 > input').value)){
+        alert('패턴 일치');
+      } else {
+        alert('패턴 불일치');
+      }
+    }
+  </script>
+
+  <script>
+    /*
+      < 대괄호 표현식 >
+
+      1. 단일 문자 또는 조합 요소를 나타낼 때 사용한다.
+      2. 사용 방법 예시
+        1) [.]  : 문자 .
+        2) [a]  : 문자 a
+        3) [ab] : 문자 a 또는 문자 b (대괄호 안에 문자 두 개가 들어가면 '또는' 개념!!)
+           [Nn][Oo] : NO no No nO
+        4) [^a] : 문자 a가 아닌 모든 문자
+           ※ 주의!!! ^[a] => ^a (a로 시작하는)  대괄호 위치 중요
+        5) [a-d] : 문자 a부터 문자 d까지 (a, b, c, d 중 하나)
+           [가-힣] : 모든 한글
+           [a-] : 문자 a 또는 문자 -
+           [-a] : 문자 - 또는 문자 a
+        6) [][ab] : 문자 [ 또는 문자] 또는 문자 a 또는 문자 b
+    */
+  </script>
+
+  <div id="div2">
+    <input type="text">
+    <button type="button" onclick="myFunc2()">검사</button>
+  </div>
+  <script>
+    function myFunc2() {
+      var regExpr = /^[A-Za-z]+$/;   // 알파벳 대소문자, 빈문자열 불가 
+      if(regExpr.test(document.querySelector('#div2 > input').value)){
+        alert('패턴 일치');
+      } else {
+        alert('패턴 불일치');
+      }
+    }
+  </script>
+
+  <script>
+
+    // 중요!!!!!!!!
+
+    // 숫자 정규식
+    var regNum = /[0-9]/;
+
+    // 알파벳
+    var regAlph = /[A-Za-z]/;
+
+    // 한글
+    var regKor = /[ㄱ-ㅣ가-힣]/;
+
+    // 특수 문자
+    var regSpec = /[^0-9A-Za-z]/;   // 숫자, 알파벳 제외
+
+  </script>
+
+  <script>
+
+    // Naming Convension 기준
+
+    // 클래스명
+    var regClass = /[A-Z][A-Za-z0-9_$]*/;
+
+    // 변수명, 메소드명
+    var regVariable = /[a-z][A-Za-z0-9_$]*/;
+
+    // 상수
+    var regFinal = /[A-Z][A-Z0-9_$]+/;
+
+  </script>
+
+  <div id="div3">
+    <input type="text">
+    <button type="button" onclick="myFunc3()">검사</button>
+  </div>
+  <script>
+    function myFunc3() {
+      var inp = document.querySelector('#div3 > input').value;
+
+      // 이메일 생성
+      var regEmail = /^[A-Za-z0-9-_]{2,}@[A-Za-z0-9]{2,}(\.[A-Za-z]{2,6}){1,2}$/;
+      //               ----------------  --------------  --------------------- 
+      //                     아이디        daum/naver..     .net/.com/.co.kr
+      if(regEmail.test(inp)){
+        alert('right')
+      } else {
+        alert('wrong')
+      }
+
+      /*
+      // 비밀번호 생성 (8~16자의 영문 대소문자, 숫자, 특수문자를 3개 이상 사용해주세요.)
+      var length = inp.length;
+      var passCount = /[A-Z]/.test(inp)          // 대문자가   포함되면 true 반환
+                    + /[a-z]/.test(inp)          // 소문자가   포함되면 true 반환
+                    + /[0-9]/.test(inp)          // 숫자가     포함되면 true 반환
+                    + /[^0-9A-Za-z]/.test(inp);  // 특수문자가 포함되면 true 반환
+      if(length >= 8 && length <= 16 && passCount >= 3){
+        alert('right');
+      } else {
+        alert('wrong');
+      }
+      */
+
+      /*
+      // 아이디 생성 (5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.)
+      var regId = /^[0-9a-z_-]{5,20}$/;   
+      if(regId.test(inp)){
+        alert('right');
+      } else {
+        alert('wrong');
+      }
+      */
+
+      /*
+      // IP주소 생성 (192.168.0.255 같은 형식)
+      var regIpAddr = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/;
+      var regIpAddr = /^((([0-9]{1,2})|(1[0-9]{2})|(2[0-4][0-9])|(25[0-5]))\.){3}((([0-9]{1,2})|(1[0-9]{2})|(2[0-4][0-9])|(25[0-5])))$/;
+      if(regIpAddr.test(inp)){
+        alert('right');
+      } else {
+        alert('wrong');
+      }
+      */
+
+      /* 
+      // 휴대폰 번호 생성 (010-xxxx-xxxx 형식)
+      var regMoblie = /^010-{0,1}[0-9]{4}-{0,1}[0-9]{4}$/;
+      if(regMoblie.test(inp)){
+        alert('right');
+      } else {
+        alert('wrong');
+      }
+      */
+
+    }
+  </script>
+
+  <hr>
+
+  <div>
+    <form action="/server/somewhere" id="frm-join" method="post">
+      <div>
+        <label for="id">아이디</label>
+        <input type="text" id="id" name="id">
+      </div>
+      <div>
+        <label for="pw">비밀번호</label>
+        <input type="password" id="pw" name="pw">
+      </div>
+      <div>
+        <label for="pw-check">비밀번호 확인</label>
+        <input type="password" id="pw-check">
+      </div>
+      <div>
+        <label for="email">이메일</label>
+        <input type="text" id="email" name="email">
+      </div>
+      <div>
+        <button type="submit">가입</button>
+        <button type="reset">다시 작성</button>
+      </div>
+    </form>
+  </div>
+  <script>
+
+    // 전역 변수 선언
+    var validId = false;
+    var validPw = false;
+    var validPwCheck = false;
+    var validEmail = false;
+    
+    // 함수 선언
+    function fnValidId(){
+
+      return /^[0-9a-z_-]{5,20}$/.test(document.getElementById('id').value);
+    }
+
+    function fnValidPw(){
+      
+      var inpPw = document.getElementById('pw').value;
+      var length = inpPw.length;
+      var passCount = /[A-Z]/.test(inpPw)          
+                    + /[a-z]/.test(inpPw)          
+                    + /[0-9]/.test(inpPw)          
+                    + /[^0-9A-Za-z]/.test(inpPw);
+                    
+      return length >= 8 && length <= 16 && passCount >= 3;
+    }
+
+    function fnValidPwCheck(){
+
+      var inpPw = document.getElementById('pw').value;
+      var inpPwCheck = document.getElementById('pw-check').value;
+      return inpPw.length != 0 && inpPw === inpPwCheck;
+    }
+
+    function fnValidEmail(){
+
+      return /^[A-Za-z0-9-_]{2,}@[A-Za-z0-9]{2,}(\.[A-Za-z]{2,6}){1,2}$/.test(document.getElementById('email').value);
+    }
+    
+    // 함수 호출 & 이벤트
+    document.getElementById('frm-join').addEventListener('submit', function(evt) {
+
+      validId = fnValidId();
+      validPw = fnValidPw();
+      validPwCheck = fnValidPwCheck();
+      validEmail = fnValidEmail();
+
+      if(!validId) {
+        alert('check ID');
+        evt.preventDefault();    //서브밋 취소
+        return;
+      } else if(!validPw || !validPwCheck) {
+        alert('check PW');
+        evt.preventDefault();    //서브밋 취소
+        return;
+      } else if(!validEmail) {
+        alert('check Email');
+        evt.preventDefault();    //서브밋 취소
+        return;
+      }
+
+    })
+  </script>
+
+</body>
+</html>
