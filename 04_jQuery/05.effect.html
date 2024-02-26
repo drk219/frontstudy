@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>effect</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+  
+  <div>
+    <button type="button" id="btn-open">open</button>
+    <button type="button" id="btn-close">close</button>
+    <button type="button" id="btn-toggle">toggle</button>
+  </div>
+  <div id="img-container"></div>
+  <style>
+    #img-container{
+      width: 384px;
+      height: 256px;
+      background-image: url('../../assets/image/animal10.jpg');
+      background-size: 384px;
+    }
+  </style>
+  <script>
+    /*
+
+      hide() : 숨기기 (display: none;)    <=> show()
+
+      */
+     $('#btn-close').on('click', function(evt){
+       $('#img-container').hide();
+     })
+     
+    /*
+
+      fadeOut() : 서서히 숨기기 (opacity: 0; + display: none;)    <=> fadeOut()
+                  n초 동안 일정하게 닫힌다. n초후 function(){}이 실행된다. 
+
+      $('#btn-close').on('click', function(evt){
+        $('#img-container').fadeOut(3000, 'linear', function(){
+          alert('done');
+        });
+      })
+
+    */
+
+    /*
+
+      slideUp() : 슬라이드 닫기 (overflow: hidden; + height : 0; + display: none;)     <=> slideDown()
+                  n초 동안 일정하게 슬라이드된다. n초 후 function(){}이 실행된다. 
+
+      $('#btn-close').on('click', function(evt){
+        $('#img-container').slideUp(3000, 'linear', function(){
+          alert('done');
+        });
+      })
+
+    */
+
+    /*
+
+      fadeTo() : 서서히 숨기기 (opacity: 사용자지정;)
+                 n초 동안 일정하게 지정값으로 투명해진다.
+
+      $('#btn-close').on('click', function(evt){
+        $('#img-container').fadeOut(3000, 0.5);
+      })
+
+    */
+  </script>
+
+  <script>
+
+    /*
+      show() : 보이기
+      fadeIn() : 일정기간동안 서서히 보이기
+      slideDown() : 일정기간동안 서서히 슬라이드 내려서 열기
+
+    */
+    $('#btn-open').on('click', function(evt){
+      $('#img-container').slideDown(3000);
+    })
+
+  </script>
+
+  <script>
+    /*
+
+    */
+    $('#btn-toggle').on('click', function(evt){
+
+      // toggle() : show() <-> hide()
+      $('#img-container').toggle();
+
+      // fadeToggle() : fadeIn() <-> fadeOut()
+      // $('#img-container').fadeToggle(3000, 'linear', function(){
+      //   alert('끝');
+      // });
+
+      // slideToggle() : slideDown() <-> slideUp()
+      // $('#img-container').slideToggle(3000, 'linear', function(){
+      //   alert('끝');
+      // });
+
+    })
+  </script>
+
+</body>
+</html>
